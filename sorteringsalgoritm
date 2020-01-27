@@ -1,0 +1,165 @@
+using System;
+
+using System.Diagnostics;
+
+
+namespace Tid_O_sorteting
+
+{
+
+    class Program
+
+    {
+
+        static void Main(string[] args)
+
+        {
+
+            var tid = new System.Diagnostics.Stopwatch();
+
+            int[] nummer = new int[100000];
+
+            double bubbleTid;
+
+            double insertionTid;
+
+
+            RandomA(nummer);
+
+            tid.Start();
+
+            Bubblesort(nummer);
+
+            tid.Stop();
+
+            bubbleTid = tid.Elapsed.TotalSeconds;
+
+            for (int i = 0; i <= nummer.Length - 1; i++)
+
+            {
+
+                Console.Write(nummer[i] + " ");
+
+            }
+
+            tid.Reset();
+
+            RandomA(nummer);
+
+            tid.Start();
+
+            insertionSort(nummer);
+
+            tid.Stop();
+
+            insertionTid = tid.Elapsed.TotalSeconds;
+
+            for (int i = 0; i <= nummer.Length - 1; i++)
+
+            {
+
+                Console.Write(nummer[i] + " ");
+
+            }
+
+            Console.WriteLine();
+
+            Console.WriteLine(" Tid  tagen för bubblesort: " + bubbleTid + "sekunder");
+
+            Console.WriteLine(" Tid  tagen för insertionsort: " + insertionTid + "sekunder");
+
+        }
+
+
+        static void RandomA(int[] nummer)
+
+        {
+
+            int rand;
+
+            Random R = new Random();
+
+            for (int i = 0; i < nummer.Length - 1; i++)
+
+            {
+
+                rand = R.Next(1, 10);
+
+                nummer[i] = rand;
+
+            }
+
+        }
+
+
+        static void Bubblesort(int[] nummer)
+
+        {
+
+            int temp;
+
+            for (int j = 0; j < nummer.Length - 1; j++)
+
+            {
+
+                for (int i = 0; i < nummer.Length - 1; i++)
+
+                {
+
+                    if (nummer[i] > nummer[i + 1])
+
+                    {
+
+                        temp = nummer[i + 1];
+
+                        nummer[i + 1] = nummer[i];
+
+                        nummer[i] = temp;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+
+        static void insertionSort(int[] nummer)
+
+        {
+
+            int temp;
+
+            int i;
+
+
+            for (int n = 1; n<nummer.Length; n++ )
+
+            {
+
+                temp = nummer[n];
+
+                i = n - 1;
+
+
+                while ( i >= 0 && nummer[i] > temp)
+
+                {
+
+                    nummer[i + 1] = nummer[i];
+
+                    i--;
+
+                }
+            
+
+
+                nummer[i + 1] = temp;
+            }
+
+                    
+
+            }
+    }
+        }
